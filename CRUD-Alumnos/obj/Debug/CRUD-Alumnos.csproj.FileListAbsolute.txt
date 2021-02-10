@@ -51,6 +51,8 @@ C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\roslyn\vbc.rsp
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\roslyn\VBCSCompiler.exe
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\Antlr3.Runtime.dll
+C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\EntityFramework.dll
+C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\EntityFramework.SqlServer.dll
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\Newtonsoft.Json.dll
@@ -62,6 +64,8 @@ C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\System.Web.WebPages.Deployment.d
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\System.Web.WebPages.dll
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\System.Web.WebPages.Razor.dll
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\WebGrease.dll
+C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\EntityFramework.xml
+C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\EntityFramework.SqlServer.xml
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\System.Web.Helpers.xml
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\System.Web.Mvc.xml
 C:\Users\shini\Desktop\ASP.NET\CRUD-Alumnos\bin\System.Web.Optimization.xml

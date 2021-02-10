@@ -27,7 +27,7 @@ namespace CRUD_Alumnos.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Alumno> Alumnoes { get; set; }
+        public virtual DbSet<Alumno> Alumno { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
