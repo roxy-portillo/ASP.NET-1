@@ -137,6 +137,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AlumnoCE.cs" />
+    <Compile Include="Models\Ciudad.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -156,9 +159,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -220,6 +220,8 @@
     <Content Include="Views\Alumnos\Agregar.cshtml" />
     <Content Include="Views\Alumnos\Editar.cshtml" />
     <Content Include="Views\Alumnos\Detalles.cshtml" />
+    <Content Include="Views\Alumnos\Agregar2.cshtml" />
+    <Content Include="Views\Alumnos\ListaCiudades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

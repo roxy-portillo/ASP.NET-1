@@ -11,15 +11,17 @@ namespace CRUD_Alumnos.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Alumno
-    {   
-        
+    {
         public int Id { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
-        public Nullable<int> Edad { get; set; }
+        public int Edad { get; set; }
         public string Sexo { get; set; }
-        public Nullable<System.DateTime> FechaRegistro { get; set; }
+        public System.DateTime FechaRegistro { get; set; }
+        public int CodCiudad { get; set; }
+    
+        public virtual Ciudad Ciudad { get; set; }
     }
 }
