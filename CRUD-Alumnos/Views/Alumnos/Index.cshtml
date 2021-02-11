@@ -16,48 +16,54 @@
             Nombre Completo
         </th>
         <th>
-           Edad
+            Edad
         </th>
         <th>
-           Sexo
+            Sexo
         </th>
         <th>
-           Fecha Alta
+            Ciudad
+        </th>
+        <th>
+            Fecha Alta
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreCompleto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Edad)
-        </td>
-        <td>
-            @{
-                if (item.Sexo == "F")
-                {
-                    <span>Femenino</span>
-                }
-                else
-                {
-                    <span>Masculino</span>
-                }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NombreCompleto)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Edad)
+    </td>
+    <td>
+        @{
+            if (item.Sexo == "F")
+            {
+                <span>Femenino</span>
             }
+            else
+            {
+                <span>Masculino</span>
+            }
+        }
 
 
-        </td>
-        <td>
-            @item.FechaRegistro.ToString()
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id=item.Id }) |
-            @Html.ActionLink("Detalles", "Detalles", new { id=item.Id }) |
-            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.Id }, new { @class = "aElimina"})
-        </td>
-    </tr>
+    </td>
+    <td>
+        @CRUD_Alumnos.Controllers.AlumnosController.NombreCiudad(item.CodCiudad)
+    </td>
+    <td>
+        @item.FechaRegistro.ToString()
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+        @Html.ActionLink("Detalles", "Detalles", new { id = item.Id }) |
+        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id }, new { @class = "aElimina" })
+    </td>
+</tr>
 }
 
 </table>

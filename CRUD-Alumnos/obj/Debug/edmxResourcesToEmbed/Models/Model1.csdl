@@ -32,7 +32,11 @@
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
     <EntitySet Name="Alumnoes" EntityType="AlumnosDBModel.Alumno" />
-    <EntitySet Name="sysdiagrams" EntityType="AlumnosDBModel.sysdiagram" />
+    <EntitySet Name="Ciudads" EntityType="AlumnosDBModel.Ciudad" />
+    <AssociationSet Name="FK_Alumno_Ciudad" Association="AlumnosDBModel.FK_Alumno_Ciudad">
+      <End Role="Ciudad" EntitySet="Ciudads" />
+      <End Role="Alumno" EntitySet="Alumnoes" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -52,18 +56,30 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombres" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="Edad" Type="Int32" />
-    <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+    <Property Name="Edad" Type="Int32" Nullable="false" />
+    <Property Name="Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CodCiudad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ciudad" Relationship="AlumnosDBModel.FK_Alumno_Ciudad" FromRole="Alumno" ToRole="Ciudad" />
   </EntityType>
-  <EntityType Name="sysdiagram">
+  <EntityType Name="Ciudad">
     <Key>
-      <PropertyRef Name="diagram_id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Alumno" Relationship="AlumnosDBModel.FK_Alumno_Ciudad" FromRole="Ciudad" ToRole="Alumno" />
   </EntityType>
+  <Association Name="FK_Alumno_Ciudad">
+    <End Type="AlumnosDBModel.Ciudad" Role="Ciudad" Multiplicity="1" />
+    <End Type="AlumnosDBModel.Alumno" Role="Alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alumno">
+        <PropertyRef Name="CodCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
