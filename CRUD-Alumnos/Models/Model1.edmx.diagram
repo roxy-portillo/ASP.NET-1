@@ -8,6 +8,13 @@
         <EntityTypeShape EntityType="AlumnosDBModel.Alumno" Width="1.5" PointX="5" PointY="1.5" />
         <EntityTypeShape EntityType="AlumnosDBModel.Ciudad" Width="1.5" PointX="2.75" PointY="1.875" />
         <AssociationConnector Association="AlumnosDBModel.FK_Alumno_Ciudad" />
+        <EntityTypeShape EntityType="AlumnosDBModel.Docente" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="AlumnosDBModel.Materias" Width="1.5" PointX="5.625" PointY="4.875" />
+        <EntityTypeShape EntityType="AlumnosDBModel.Notas" Width="1.5" PointX="7.875" PointY="2.75" />
+        <AssociationConnector Association="AlumnosDBModel.FK_Notas_Alumno1" />
+        <AssociationConnector Association="AlumnosDBModel.FK_Docente_Ciudad" />
+        <AssociationConnector Association="AlumnosDBModel.FK_Materias_Docente1" />
+        <AssociationConnector Association="AlumnosDBModel.FK_Notas_Materias1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

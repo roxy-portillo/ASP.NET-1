@@ -46,5 +46,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Docente">
+      <EntityTypeMapping TypeName="AlumnosDBModel.Docente">
+        <MappingFragment StoreEntitySet="Docente">
+          <ScalarProperty Name="CodCiudad" ColumnName="CodCiudad" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Materias">
+      <EntityTypeMapping TypeName="AlumnosDBModel.Materias">
+        <MappingFragment StoreEntitySet="Materias">
+          <ScalarProperty Name="Id_docente" ColumnName="Id_docente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notas">
+      <EntityTypeMapping TypeName="AlumnosDBModel.Notas">
+        <MappingFragment StoreEntitySet="Notas">
+          <ScalarProperty Name="Parcial3" ColumnName="Parcial3" />
+          <ScalarProperty Name="Lab3" ColumnName="Lab3" />
+          <ScalarProperty Name="Parcial2" ColumnName="Parcial2" />
+          <ScalarProperty Name="Lab2" ColumnName="Lab2" />
+          <ScalarProperty Name="Parcial1" ColumnName="Parcial1" />
+          <ScalarProperty Name="Lab1" ColumnName="Lab1" />
+          <ScalarProperty Name="Id_materia" ColumnName="Id_materia" />
+          <ScalarProperty Name="Id_alumno" ColumnName="Id_alumno" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

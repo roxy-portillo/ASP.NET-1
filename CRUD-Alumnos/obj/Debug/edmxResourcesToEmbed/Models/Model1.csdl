@@ -37,6 +37,25 @@
       <End Role="Ciudad" EntitySet="Ciudads" />
       <End Role="Alumno" EntitySet="Alumnoes" />
     </AssociationSet>
+    <EntitySet Name="Docente" EntityType="AlumnosDBModel.Docente" />
+    <EntitySet Name="Materias" EntityType="AlumnosDBModel.Materias" />
+    <EntitySet Name="Notas" EntityType="AlumnosDBModel.Notas" />
+    <AssociationSet Name="FK_Notas_Alumno1" Association="AlumnosDBModel.FK_Notas_Alumno1">
+      <End Role="Alumno" EntitySet="Alumnoes" />
+      <End Role="Notas" EntitySet="Notas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Docente_Ciudad" Association="AlumnosDBModel.FK_Docente_Ciudad">
+      <End Role="Ciudad" EntitySet="Ciudads" />
+      <End Role="Docente" EntitySet="Docente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Materias_Docente1" Association="AlumnosDBModel.FK_Materias_Docente1">
+      <End Role="Docente" EntitySet="Docente" />
+      <End Role="Materias" EntitySet="Materias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notas_Materias1" Association="AlumnosDBModel.FK_Notas_Materias1">
+      <End Role="Materias" EntitySet="Materias" />
+      <End Role="Notas" EntitySet="Notas" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -61,6 +80,7 @@
     <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CodCiudad" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Ciudad" Relationship="AlumnosDBModel.FK_Alumno_Ciudad" FromRole="Alumno" ToRole="Ciudad" />
+    <NavigationProperty Name="Notas" Relationship="AlumnosDBModel.FK_Notas_Alumno1" FromRole="Alumno" ToRole="Notas" />
   </EntityType>
   <EntityType Name="Ciudad">
     <Key>
@@ -69,6 +89,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Alumno" Relationship="AlumnosDBModel.FK_Alumno_Ciudad" FromRole="Ciudad" ToRole="Alumno" />
+    <NavigationProperty Name="Docente" Relationship="AlumnosDBModel.FK_Docente_Ciudad" FromRole="Ciudad" ToRole="Docente" />
   </EntityType>
   <Association Name="FK_Alumno_Ciudad">
     <End Type="AlumnosDBModel.Ciudad" Role="Ciudad" Multiplicity="1" />
@@ -79,6 +100,91 @@
       </Principal>
       <Dependent Role="Alumno">
         <PropertyRef Name="CodCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Docente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CodCiudad" Type="Int32" />
+    <NavigationProperty Name="Ciudad" Relationship="AlumnosDBModel.FK_Docente_Ciudad" FromRole="Docente" ToRole="Ciudad" />
+    <NavigationProperty Name="Materias" Relationship="AlumnosDBModel.FK_Materias_Docente1" FromRole="Docente" ToRole="Materias" />
+  </EntityType>
+  <EntityType Name="Materias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_docente" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Docente" Relationship="AlumnosDBModel.FK_Materias_Docente1" FromRole="Materias" ToRole="Docente" />
+    <NavigationProperty Name="Notas" Relationship="AlumnosDBModel.FK_Notas_Materias1" FromRole="Materias" ToRole="Notas" />
+  </EntityType>
+  <EntityType Name="Notas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_alumno" Type="Int32" Nullable="false" />
+    <Property Name="Id_materia" Type="Int32" Nullable="false" />
+    <Property Name="Lab1" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Parcial1" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Lab2" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Parcial2" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Lab3" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Parcial3" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Alumno" Relationship="AlumnosDBModel.FK_Notas_Alumno1" FromRole="Notas" ToRole="Alumno" />
+    <NavigationProperty Name="Materias" Relationship="AlumnosDBModel.FK_Notas_Materias1" FromRole="Notas" ToRole="Materias" />
+  </EntityType>
+  <Association Name="FK_Notas_Alumno1">
+    <End Type="AlumnosDBModel.Alumno" Role="Alumno" Multiplicity="1" />
+    <End Type="AlumnosDBModel.Notas" Role="Notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notas">
+        <PropertyRef Name="Id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Docente_Ciudad">
+    <End Type="AlumnosDBModel.Ciudad" Role="Ciudad" Multiplicity="0..1" />
+    <End Type="AlumnosDBModel.Docente" Role="Docente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Docente">
+        <PropertyRef Name="CodCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Materias_Docente1">
+    <End Type="AlumnosDBModel.Docente" Role="Docente" Multiplicity="1" />
+    <End Type="AlumnosDBModel.Materias" Role="Materias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Docente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Materias">
+        <PropertyRef Name="Id_docente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notas_Materias1">
+    <End Type="AlumnosDBModel.Materias" Role="Materias" Multiplicity="1" />
+    <End Type="AlumnosDBModel.Notas" Role="Notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materias">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notas">
+        <PropertyRef Name="Id_materia" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

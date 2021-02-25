@@ -1,0 +1,83 @@
+﻿@model CRUD_Alumnos.Models.Notas
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Notas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_alumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_alumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_materia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_materia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lab1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lab1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parcial1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parcial1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lab2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lab2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parcial2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parcial2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lab3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lab3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parcial3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parcial3)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

@@ -129,7 +129,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlumnosController.cs" />
+    <Compile Include="Controllers\DocenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MateriaController.cs" />
+    <Compile Include="Controllers\NotaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,6 +141,13 @@
     </Compile>
     <Compile Include="Models\AlumnoCE.cs" />
     <Compile Include="Models\Ciudad.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocenteCE.cs" />
+    <Compile Include="Models\Docente.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Materias.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -154,6 +164,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Notas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -222,6 +235,18 @@
     <Content Include="Views\Alumnos\Detalles.cshtml" />
     <Content Include="Views\Alumnos\Agregar2.cshtml" />
     <Content Include="Views\Alumnos\ListaCiudades.cshtml" />
+    <Content Include="Views\Docente\Index.cshtml" />
+    <Content Include="Views\Materia\Index.cshtml" />
+    <Content Include="Views\Nota\Index.cshtml" />
+    <Content Include="Views\Docente\Agregar.cshtml" />
+    <Content Include="Views\Materia\Agregar.cshtml" />
+    <Content Include="Views\Nota\Agregar.cshtml" />
+    <Content Include="Views\Docente\Editar.cshtml" />
+    <Content Include="Views\Docente\DetallesDocente.cshtml" />
+    <Content Include="Views\Materia\Editar.cshtml" />
+    <Content Include="Views\Materia\Detalles.cshtml" />
+    <Content Include="Views\Nota\Editar.cshtml" />
+    <Content Include="Views\Nota\Detalles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

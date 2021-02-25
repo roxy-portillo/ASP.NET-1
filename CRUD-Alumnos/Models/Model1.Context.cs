@@ -29,6 +29,9 @@ namespace CRUD_Alumnos.Models
     
         public virtual DbSet<Alumno> Alumno { get; set; }
         public virtual DbSet<Ciudad> Ciudad { get; set; }
+        public virtual DbSet<Docente> Docente { get; set; }
+        public virtual DbSet<Materias> Materias { get; set; }
+        public virtual DbSet<Notas> Notas { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

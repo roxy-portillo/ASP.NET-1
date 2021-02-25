@@ -1,59 +1,45 @@
 ﻿using CRUD_Alumnos.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace CRUD_Alumnos.Controllers
 {
-    public class AlumnosController : Controller
+    public class DocenteController : Controller
     {
-        // GET: Alumnos
+        // GET: Docente
         public ActionResult Index()
         {
             try
             {
-                /*int edad = 18;
-
-                string sql = @"
-                        select a.Id, a.Nombres, a.Apellidos, a.Edad, a.Sexo, a.FechaRegistro, c. Nombre as NombreCiudad 
-                        from Alumno a
-                        inner join Ciudad c on a.CodCiudad = c.Id 
-                        where a.Edad > @edadAlumno";*/
-
 
                 using (var db = new AlumnosContext())
                 {
-                    var data = from a in db.Alumno
-                               join c in db.Ciudad on a.CodCiudad equals c.Id
-                               select new AlumnoCE()
+                    var data = from d in db.Docente
+                               join c in db.Ciudad on d.CodCiudad equals c.Id
+                               select new DocenteCE()
                                {
-                                   Id = a.Id,
-                                   Nombres = a.Nombres,
-                                   Apellidos = a.Apellidos,
-                                   Edad = a.Edad,
-                                   Sexo = a.Sexo,
-                                   NombreCiudad = c.Nombre,
-                                   FechaRegistro = a.FechaRegistro
-
+                                   Id = d.Id,
+                                   Nombres = d.Nombres,
+                                   Apellidos = d.Apellidos,
+                                   NombreCiudad = c.Nombre              
                                };
 
                     //List<Alumno> lista = db.Alumno.Where(a => a.Edad > 18).ToList();
-                    return View(data.ToList());
+                    return View(db.Docente.ToList());
 
                     //return View(db.Database.SqlQuery<AlumnoCE>(sql,
-                       // new SqlParameter("@edadAlumno", edad)).ToList());
+                    // new SqlParameter("@edadAlumno", edad)).ToList());
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;
             }
-           
         }
 
         [HttpGet]
@@ -64,7 +50,7 @@ namespace CRUD_Alumnos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Agregar(Alumno a)
+        public ActionResult Agregar(Docente d)
         {
             if (!ModelState.IsValid)
             {
@@ -75,31 +61,25 @@ namespace CRUD_Alumnos.Controllers
             {
                 //To open and close conection
                 using (var db = new AlumnosContext())
-                {
-                    a.FechaRegistro = DateTime.Now;
-                    db.Alumno.Add(a);
+                {                   
+                    db.Docente.Add(d);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-             ModelState.AddModelError("", "Error al registrar alumno " + ex.Message);
+                ModelState.AddModelError("", "Error al registrar docente " + ex.Message);
                 return View();
             }
-            
-           
-        }
 
-        public ActionResult Agregar2()
-        {
-            return View();
+
         }
 
         public ActionResult ListaCiudades()
         {
             using (var db = new AlumnosContext())
-            {             
+            {
                 return PartialView(db.Ciudad.ToList());
             }
         }
@@ -112,8 +92,8 @@ namespace CRUD_Alumnos.Controllers
             {
                 using (var db = new AlumnosContext())
                 {
-                    Alumno al = db.Alumno.Find(id);
-                    return View(al);
+                    Docente doc = db.Docente.Find(id);
+                    return View(doc);
                 }
             }
             catch (Exception ex)
@@ -121,41 +101,43 @@ namespace CRUD_Alumnos.Controllers
 
                 throw;
             }
-           
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar(Alumno a)
+        public ActionResult Editar(Docente d)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             try
             {
                 using (var db = new AlumnosContext())
                 {
-                    Alumno al = db.Alumno.Find(a.Id);
-                    al.Nombres = a.Nombres;
-                    al.Apellidos = a.Apellidos;
-                    al.Edad = a.Edad;
-                    al.Sexo = a.Sexo;              
+                    Docente doc = db.Docente.Find(d.Id);
+                    doc.Nombres = d.Nombres;
+                    doc.Apellidos = d.Apellidos;
                     db.SaveChanges();
 
                     return RedirectToAction("Index");
-                }                   
+                }
             }
             catch (Exception ex)
             {
 
                 throw;
             }
-            
+
         }
 
-        public ActionResult Detalles(int id)
+        public ActionResult DetallesDocente(int id)
         {
             using (var db = new AlumnosContext())
             {
-                Alumno al = db.Alumno.Find(id);
-                return View(al);
+                Docente doc = db.Docente.Find(id);
+                return View(doc);
             }
 
         }
@@ -164,8 +146,8 @@ namespace CRUD_Alumnos.Controllers
         {
             using (var db = new AlumnosContext())
             {
-                Alumno al = db.Alumno.Find(id);
-                db.Alumno.Remove(al);
+                Docente doc = db.Docente.Find(id);
+                db.Docente.Remove(doc);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -178,6 +160,5 @@ namespace CRUD_Alumnos.Controllers
                 return db.Ciudad.Find(CodCiudad).Nombre;
             }
         }
-
     }
 }

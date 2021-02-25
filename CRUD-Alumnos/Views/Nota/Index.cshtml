@@ -1,0 +1,87 @@
+﻿@model IEnumerable<CRUD_Alumnos.Models.Notas>
+
+@{
+    ViewBag.Title = "Notas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Notas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Agregar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_alumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_materia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lab1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parcial1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lab2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parcial2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lab3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parcial3)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_alumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_materia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lab1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parcial1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lab2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parcial2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lab3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parcial3)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                @Html.ActionLink("Detalles", "Detalles", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id }, new { @class = "dElimina" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    <script>
+        $(".dElimina").click(function (event) {
+            if (!confirm('Estas seguro de eliminar ?')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+}

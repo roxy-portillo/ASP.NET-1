@@ -12,21 +12,20 @@ namespace CRUD_Alumnos.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Ciudad
+    public partial class Materias
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ciudad()
+        public Materias()
         {
-            this.Alumno = new HashSet<Alumno>();
-            this.Docente = new HashSet<Docente>();
+            this.Notas = new HashSet<Notas>();
         }
     
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public int Id_docente { get; set; }
     
+        public virtual Docente Docente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Alumno> Alumno { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Docente> Docente { get; set; }
+        public virtual ICollection<Notas> Notas { get; set; }
     }
 }
