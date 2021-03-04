@@ -19,6 +19,37 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="Docente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CodCiudad" Type="int" />
+  </EntityType>
+  <EntityType Name="Materias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id_docente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_alumno" Type="int" Nullable="false" />
+    <Property Name="Id_materia" Type="int" Nullable="false" />
+    <Property Name="Lab1" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Parcial1" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Lab2" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Parcial2" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Lab3" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Parcial3" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
   <Association Name="FK_Alumno_Ciudad">
     <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
     <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
@@ -28,6 +59,54 @@
       </Principal>
       <Dependent Role="Alumno">
         <PropertyRef Name="CodCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Docente_Ciudad">
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="0..1" />
+    <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Docente">
+        <PropertyRef Name="CodCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Materias_Docente1">
+    <End Role="Docente" Type="Self.Docente" Multiplicity="1" />
+    <End Role="Materias" Type="Self.Materias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Docente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Materias">
+        <PropertyRef Name="Id_docente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notas_Alumno1">
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="1" />
+    <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notas">
+        <PropertyRef Name="Id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notas_Materias1">
+    <End Role="Materias" Type="Self.Materias" Multiplicity="1" />
+    <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materias">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notas">
+        <PropertyRef Name="Id_materia" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -65,9 +144,28 @@
   <EntityContainer Name="AlumnosDBModelStoreContainer">
     <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Docente" EntityType="Self.Docente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notas" EntityType="Self.Notas" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Alumno_Ciudad" Association="Self.FK_Alumno_Ciudad">
       <End Role="Ciudad" EntitySet="Ciudad" />
       <End Role="Alumno" EntitySet="Alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Docente_Ciudad" Association="Self.FK_Docente_Ciudad">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="Docente" EntitySet="Docente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Materias_Docente1" Association="Self.FK_Materias_Docente1">
+      <End Role="Docente" EntitySet="Docente" />
+      <End Role="Materias" EntitySet="Materias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notas_Alumno1" Association="Self.FK_Notas_Alumno1">
+      <End Role="Alumno" EntitySet="Alumno" />
+      <End Role="Notas" EntitySet="Notas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notas_Materias1" Association="Self.FK_Notas_Materias1">
+      <End Role="Materias" EntitySet="Materias" />
+      <End Role="Notas" EntitySet="Notas" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -1,0 +1,83 @@
+﻿@model CRUD_Alumnos.Models.Notas
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Notas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           ID Alumno
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_alumno)
+        </dd>
+
+        <dt>
+           ID Materia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_materia)
+        </dd>
+
+        <dt>
+            Laboratorio 1
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lab1)
+        </dd>
+
+        <dt>
+          Parcial 1
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parcial1)
+        </dd>
+
+        <dt>
+           Laboratorio 2
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lab2)
+        </dd>
+
+        <dt>
+            Parcial 2
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parcial2)
+        </dd>
+
+        <dt>
+            Laboratorio 3
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lab3)
+        </dd>
+
+        <dt>
+            Parcial 3
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parcial3)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

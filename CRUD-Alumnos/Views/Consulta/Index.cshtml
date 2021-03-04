@@ -1,0 +1,96 @@
+﻿@model IEnumerable<CRUD_Alumnos.Models.Notas>
+
+@{
+    ViewBag.Title = "Consulta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    table th {
+        background-color: cyan !important;
+        color: floralwhite;
+    }
+</style>
+<h2>Materias</h2>
+
+
+<table id="notaTable" class="display">
+    <thead>
+        <tr>
+            <th>ID Alumno</th>
+            <th>Materia</th>
+
+        </tr>
+    </thead>
+</table>
+
+<h2>Notas</h2>
+<table id="notaTable2" class="display">
+    <thead>
+        <tr>
+            <th>ID Alumno</th>
+            <th>Materia </th>
+            <th>Laboratorio 1</th>
+            <th>Parcial 1</th>
+            <th>Laboratorio 2</th>
+            <th>Parcial 2</th>
+            <th>Laboratorio 3</th>
+            <th>Parcial 3</th>
+        </tr>
+    </thead>
+</table>
+
+
+<link href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#notaTable').DataTable({
+                "processing": false,
+                "serverSide": true,
+                "ajax": {
+                    "url": "@Url.Content("~/Consulta/Json")",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "pageLength": 10,
+                "filter": true,
+                "responsivePriority": 1,
+                "data": null,
+                    "columns": [
+                        { "data": "Id_alumno", "name": "Id_alumno", "autoWidth": true },
+                        { "data": "NombreMateria", "name": "NombreMateria", "autoWidth": true },
+                    ]
+            });
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#notaTable2').DataTable({
+                "processing": false,
+                "serverSide": true,
+                "ajax": {
+                    "url": "@Url.Content("~/Consulta/Json")",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "pageLength": 10,
+                "filter": true,
+                "responsivePriority": 1,
+                "data": null,
+                    "columns": [
+                        { "data": "Id_alumno", "name": "Id_alumno", "autoWidth": true },
+                        { "data": "NombreMateria", "name": "NombreMateria", "autoWidth": true },
+                        { "data": "Lab1", "name": "Lab1", "autoWidth": true },
+                        { "data": "Parcial1", "name": "Parcial1", "autoWidth": true },
+                        { "data": "Lab2", "name": "Lab2", "autoWidth": true },
+                        { "data": "Parcial2", "name": "Parcial2", "autoWidth": true },
+                        { "data": "Lab3", "name": "Lab3", "autoWidth": true },
+                        { "data": "Parcial3", "name": "Parcial3", "autoWidth": true }
+                    ]
+            });
+        })
+    </script>
+}

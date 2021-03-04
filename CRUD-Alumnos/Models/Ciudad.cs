@@ -18,6 +18,7 @@ namespace CRUD_Alumnos.Models
         public Ciudad()
         {
             this.Alumno = new HashSet<Alumno>();
+            this.Docente = new HashSet<Docente>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace CRUD_Alumnos.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Alumno> Alumno { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Docente> Docente { get; set; }
     }
 }

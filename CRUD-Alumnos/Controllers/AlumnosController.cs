@@ -48,7 +48,7 @@ namespace CRUD_Alumnos.Controllers
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -136,8 +136,7 @@ namespace CRUD_Alumnos.Controllers
                     al.Nombres = a.Nombres;
                     al.Apellidos = a.Apellidos;
                     al.Edad = a.Edad;
-                    al.Sexo = a.Sexo;
-
+                    al.Sexo = a.Sexo;              
                     db.SaveChanges();
 
                     return RedirectToAction("Index");

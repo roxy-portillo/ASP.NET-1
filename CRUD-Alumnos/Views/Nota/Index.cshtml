@@ -1,0 +1,118 @@
+﻿@model IEnumerable<CRUD_Alumnos.Models.Notas>
+
+@{
+    ViewBag.Title = "Notas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    h2 {
+        color: blueviolet;
+        border: 1px solid;
+        border-color: black;
+        border-radius: 8px;
+        width: 10%;
+        background-color: azure;
+        text-align: center;
+    }
+
+    .table th {
+        background-color: violet !important;
+        color: floralwhite;
+    }
+
+    .table td {
+        background-color: floralwhite;
+        padding: 8px;
+    }
+
+    body {
+        background-color: aliceblue;
+    }
+   
+</style>
+<h2>Notas</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Agregar")
+</p>
+
+
+<table class="table">
+    <tr>
+        <th>
+           ID Alumno
+        </th>
+        <th>
+           ID Materia
+        </th>
+        <th>
+          Laboratorio 1
+        </th>
+        <th>
+           Parcial 1
+        </th>
+        <th>
+            Laboratorio 2
+        </th>
+        <th>
+          Parcial 2
+        </th>
+        <th>
+          Laboratorio 3
+        </th>
+        <th>
+          Parcial 3
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_alumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_materia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lab1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parcial1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lab2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parcial2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lab3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parcial3)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                @Html.ActionLink("Detalles", "Detalles", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id }, new { @class = "dElimina" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<link href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script>
+        $(".dElimina").click(function (event) {
+            if (!confirm('Estas seguro de eliminar ?')) {
+                event.preventDefault();
+            }
+        });
+    </script>   
+}

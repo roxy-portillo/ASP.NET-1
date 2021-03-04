@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CRUD_Alumnos.Models.Materias>
+
+@{
+    ViewBag.Title = "Lista de Materias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    h2 {
+        color: blueviolet;
+        border: 1px solid;
+        border-color: black;
+        border-radius: 8px;
+        width: 30%;
+        background-color: azure;
+        text-align: center;
+    }
+
+    .table th {
+        background-color: skyblue !important;
+    }
+
+    .table td {
+        background-color: floralwhite;
+        padding: 8px;
+    }
+
+    body {
+        background-color: aliceblue;
+    }
+
+
+
+</style>
+<h2>Lista de Materias</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Agregar")
+</p>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_docente)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_docente)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                @Html.ActionLink("Detalles", "Detalles", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id }, new { @class = "dElimina" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+@section scripts{
+    <script>
+        $(".dElimina").click(function (event) {
+            if (!confirm('Estas seguro de eliminar ?')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+}
