@@ -1,10 +1,35 @@
-﻿@model IEnumerable<CRUD_Alumnos.Models.Docente>
+﻿@model IEnumerable<CRUD_Alumnos.Models.DocenteCE>
 
 @{
     ViewBag.Title = "Lista de Docentes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+   
 
+<style>
+    h2 {
+        color: blueviolet;
+        border: 1px solid;
+        border-color: black;
+        border-radius: 8px;
+        width: 30%;
+        background-color: azure;
+        text-align: center;
+    }
+
+    .table th {
+        background-color: lightgreen;
+    }
+
+    .table td {
+        background-color: white;
+        padding: 8px;
+    }
+
+    body {
+        background-color: antiquewhite;
+    }
+</style>
 <h2>Lista de Docentes</h2>
 
 <p>
@@ -14,28 +39,29 @@
     <tr>
         <th>
             Nombre Completo
-        </th>   
+        </th>
         <th>
-           Ciudad
+            Ciudad
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreCompleto)
-        </td>
-        <td>
-            @item.NombreCiudad
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id=item.Id }) |
-            @Html.ActionLink("Detalles", "DetallesDocente", new { id=item.Id }) |
-            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.Id }, new { @class = "dElimina"})
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @item.NombreCiudad
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                @Html.ActionLink("Detalles", "DetallesDocente", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id }, new { @class = "dElimina" })
+            </td>
+        </tr>
+    }
 
 </table>
 
@@ -47,4 +73,4 @@
             }
         });
     </script>
-    }
+}

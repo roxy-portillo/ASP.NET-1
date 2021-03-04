@@ -23,7 +23,7 @@ namespace CRUD_Alumnos.Models
         public Nullable<decimal> Parcial2 { get; set; }
         public Nullable<decimal> Lab3 { get; set; }
         public Nullable<decimal> Parcial3 { get; set; }
-    
+        public string NombreMateria { get; set; }
         public virtual Alumno Alumno { get; set; }
         public virtual Materias Materias { get; set; }
     }

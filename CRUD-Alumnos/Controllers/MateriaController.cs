@@ -2,13 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Web;
 using System.Web.Mvc;
+using CRUD_Alumnos.Models;
+
 
 namespace CRUD_Alumnos.Controllers
 {
     public class MateriaController : Controller
     {
+       
         // GET: Materia
         public ActionResult Index()
         {
@@ -111,5 +115,8 @@ namespace CRUD_Alumnos.Controllers
                 return RedirectToAction("Index");
             }
         }
+        
+   
+
     }
 }

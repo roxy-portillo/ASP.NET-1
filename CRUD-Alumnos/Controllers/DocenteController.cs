@@ -1,9 +1,8 @@
 ﻿using CRUD_Alumnos.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using CRUD_Alumnos.Models;
 
 namespace CRUD_Alumnos.Controllers
 {
@@ -28,12 +27,11 @@ namespace CRUD_Alumnos.Controllers
                                };
 
                     //List<Alumno> lista = db.Alumno.Where(a => a.Edad > 18).ToList();
-                    return View(db.Docente.ToList());
+                    return View(data.ToList());
 
                     //return View(db.Database.SqlQuery<AlumnoCE>(sql,
                     // new SqlParameter("@edadAlumno", edad)).ToList());
-
-                }
+                    }
             }
             catch (Exception)
             {
@@ -160,5 +158,7 @@ namespace CRUD_Alumnos.Controllers
                 return db.Ciudad.Find(CodCiudad).Nombre;
             }
         }
+
+        
     }
 }
